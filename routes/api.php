@@ -39,3 +39,4 @@ Route::put('/teacher/{id}/status',[TeacherController::class,'teacherStatus'])->m
 //Batches Routes Section
 Route::get('/batches',[BatchesController::class,'index'])->middleware(TokenVerificationMiddleware::class);
 Route::post('/batches',[BatchesController::class,'create'])->middleware(TokenVerificationMiddleware::class);
+Route::get('/batches/{id}',[BatchesController::class,'getBatcheDetails'])->middleware(TokenVerificationMiddleware::class);

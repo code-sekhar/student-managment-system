@@ -67,4 +67,28 @@ class BatchesController extends Controller
             ],500);
         }
     }
+    //get Single Batches
+    public function getBatcheDetails(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+
+            $result = Batches::where('user_id', $user_id)->where('id', $id)->get();
+            if($result->isEmpty()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Batch not found',
+                ],404);
+            }else{
+                return response()->json([
+                    'data' => $result,
+                    'message' => 'Batch Get Successfully !',
+                ],201);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                'message' => $e->getMessage(),
+                'success' => false,
+            ],500);
+        }
+    }
 }
