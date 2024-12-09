@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BatchesController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenVerificationMiddleware;
@@ -34,3 +35,7 @@ Route::delete('/teacher/{id}',[TeacherController::class,'delete'])->middleware(T
 Route::put('/teacher/{id}',[TeacherController::class,'update'])->middleware(TokenVerificationMiddleware::class);
 Route::get('/teacher/{id}',[TeacherController::class,'getTeacherDetails'])->middleware(TokenVerificationMiddleware::class);
 Route::put('/teacher/{id}/status',[TeacherController::class,'teacherStatus'])->middleware(TokenVerificationMiddleware::class);
+
+//Batches Routes Section
+Route::get('/batches',[BatchesController::class,'index'])->middleware(TokenVerificationMiddleware::class);
+Route::post('/batches',[BatchesController::class,'create'])->middleware(TokenVerificationMiddleware::class);
