@@ -91,4 +91,28 @@ class BatchesController extends Controller
             ],500);
         }
     }
+    //delete Batch
+    public function deleteBatch(Request $request,$id)
+    {
+        try{
+            $user_id = $request->header('id');
+            $result = Batches::where('user_id', $user_id)->where('id', $id)->delete();
+            if($result){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Batch deleted successfully!'
+                ],201);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Batches Not found!'
+                ],404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                'message' => $e->getMessage(),
+                'success' => false
+            ],500);
+        }
+    }
 }
