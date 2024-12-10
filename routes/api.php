@@ -42,3 +42,4 @@ Route::post('/batches',[BatchesController::class,'create'])->middleware(TokenVer
 Route::get('/batches/{id}',[BatchesController::class,'getBatcheDetails'])->middleware(TokenVerificationMiddleware::class);
 Route::delete('/batches/{id}',[BatchesController::class,'deleteBatch'])->middleware(TokenVerificationMiddleware::class);
 Route::put('/batches/{id}/status',[BatchesController::class,'statusBatch'])->middleware(TokenVerificationMiddleware::class);
+Route::put('/batches/{id}',[BatchesController::class,'updateBatch'])->middleware(TokenVerificationMiddleware::class);

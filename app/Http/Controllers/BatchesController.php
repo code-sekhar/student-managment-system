@@ -140,4 +140,32 @@ class BatchesController extends Controller
             ],500);
         }
     }
+    //update Batches
+    public function updateBatch(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Batches::where('user_id', $user_id)->where('id', $id)->update([
+                'name' => $request->input('name'),
+                'start_date' => $request->input('start_date'),
+                'end_date' => $request->input('end_date'),
+                'instructor_id' => $request->input('instructor_id')
+            ]);
+            if($result){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Batch updated successfully!'
+                ],201);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Batch Not found!'
+                ],404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                'message' => 'Something went wrong',
+                'success' => false
+            ],500);
+        }
+    }
 }
