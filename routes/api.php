@@ -48,3 +48,6 @@ Route::put('/batches/{id}',[BatchesController::class,'updateBatch'])->middleware
 //Students Route Section
 Route::post('/student',[StudentController::class,'addStudent'])->middleware(TokenVerificationMiddleware::class);
 Route::get('/student',[StudentController::class,'index'])->middleware(TokenVerificationMiddleware::class);
+Route::get('/student/{id}',[StudentController::class,'studentDetails'])->middleware(TokenVerificationMiddleware::class);
+Route::put('/student/{id}/status',[StudentController::class,'updateStatusStudent'])->middleware(TokenVerificationMiddleware::class);
+Route::put('/student/{id}',[StudentController::class,'updateStudent'])->middleware(TokenVerificationMiddleware::class);

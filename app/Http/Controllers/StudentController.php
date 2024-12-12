@@ -45,5 +45,73 @@ class StudentController extends Controller
             ],500);
         }
     }
-
+    //Student details get
+    public function studentDetails(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Student::where('user_id',$user_id)->where('id',$id)->get();
+            if($result->isEmpty()){
+                return response()->json(["message" => "No data found"], 404);
+            }else{
+                return response()->json([
+                    'data' => $result,
+                    'message' => 'Student fetched successfully',
+                    "success"=>true
+                ],201);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                "message"=>'Something went wrong',
+                "success" => false,
+            ],500);
+        }
+    }
+    //Update Status
+    public function updateStatusStudent(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Student::where('user_id',$user_id)->where('id',$id)->update([
+                'status'=> $request->input('status')
+            ]);
+            if($result){
+                return response()->json(["message"=>"Student Status Updated Successfully"],201);
+            }else{
+                return response()->json(["message"=>"Student Not Found"],404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                "message"=>'Something went wrong',
+                "success" => false,
+            ],500);
+        }
+    }
+    //Update Students
+    public function updateStudent(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Student::where('user_id',$user_id)->where('id',$id)->update([
+                'name'=> $request->input('name'),
+                'email'=> $request->input('email'),
+                'phone'=> $request->input('phone'),
+                'batch_id'=> $request->input('batch_id')
+            ]);
+            if($result){
+                return response()->json([
+                    'data' => $result,
+                    'message' => 'Student fetched successfully',
+                    "success"=>true
+                ],201);
+            }else{
+                return response()->json([
+                    "message" => "No data found",
+                    "success" => false
+                ], 404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                "message"=>'Something went wrong',
+                "success" => false,
+            ],500);
+        }
+    }
 }
