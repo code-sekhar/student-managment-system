@@ -51,3 +51,4 @@ Route::get('/student',[StudentController::class,'index'])->middleware(TokenVerif
 Route::get('/student/{id}',[StudentController::class,'studentDetails'])->middleware(TokenVerificationMiddleware::class);
 Route::put('/student/{id}/status',[StudentController::class,'updateStatusStudent'])->middleware(TokenVerificationMiddleware::class);
 Route::put('/student/{id}',[StudentController::class,'updateStudent'])->middleware(TokenVerificationMiddleware::class);
+Route::delete('/student/{id}',[StudentController::class,'deleteStudent'])->middleware(TokenVerificationMiddleware::class);

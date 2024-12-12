@@ -114,4 +114,27 @@ class StudentController extends Controller
             ],500);
         }
     }
+    //Delete Student
+    public function deleteStudent(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Student::where('user_id',$user_id)->where('id',$id)->delete();
+            if($result){
+                return response()->json([
+                    "message"=>"Student Deleted Successfully",
+                    "success"=>true
+                ],201);
+            }else{
+                return response()->json([
+                    "message"=>"Student Not Found",
+                    "success" => false
+                ],404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                "message"=>'Something went wrong',
+                "success" => false,
+            ]);
+        }
+    }
 }
