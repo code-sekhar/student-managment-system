@@ -58,3 +58,6 @@ Route::delete('/student/{id}',[StudentController::class,'deleteStudent'])->middl
 Route::post('/course',[CourseController::class,'create'])->middleware(TokenVerificationMiddleware::class);
 Route::get('/course',[CourseController::class,'index'])->middleware(TokenVerificationMiddleware::class);
 Route::get('/course/{id}',[CourseController::class,'getCourseDetails'])->middleware(TokenVerificationMiddleware::class);
+Route::put('/course/{id}/status',[CourseController::class,'CourseStatusUpdate'])->middleware(TokenVerificationMiddleware::class);
+Route::put('/course/{id}',[CourseController::class,'CourseUpdate'])->middleware(TokenVerificationMiddleware::class);
+Route::delete('/course/{id}',[CourseController::class,'CourseDelete'])->middleware(TokenVerificationMiddleware::class);

@@ -68,4 +68,79 @@ class CourseController extends Controller
             ],500);
         }
     }
+    //Course status Update
+    public function CourseStatusUpdate(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Courses::where('user_id',$user_id)->where('id',$id)->update([
+                'status' => $request->input('status')
+            ]);
+            if($result){
+                return response()->json([
+                    'message' => 'Course Status Updated Successfully',
+                    'data' => $result,
+                ],201);
+            }else{
+                return response()->json([
+                    'message' => 'Course Not Found',
+                    'success' => false
+                ],404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                'message' => 'Sorry something went wrong',
+                'success' => false
+            ],500);
+        }
+    }
+    //course Update
+    public function CourseUpdate(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Courses::where('user_id',$user_id)->where('id',$id)->update([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'duration' => $request->input('duration')
+            ]);
+            if($result){
+                return response()->json([
+                    'message' => 'Course Status Updated Successfully',
+                    'data' => $result,
+                    'success' => true
+                ],201);
+            }else{
+                return response()->json([
+                    'message' => 'Course Not Found',
+                    'success' => false
+                ],404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                'message' => 'Sorry something went wrong',
+                'success' => false
+            ],500);
+        }
+    }
+    public function CourseDelete(Request $request,$id){
+        try{
+            $user_id = $request->header('id');
+            $result = Courses::where('user_id',$user_id)->where('id',$id)->delete();
+            if($result){
+                return response()->json([
+                    'message' => 'Course Deleted Successfully',
+                    'success' => true
+                ],201);
+            }else{
+                return response()->json([
+                    'message' => 'Course Not Found',
+                    'success' => false
+                ],404);
+            }
+        }catch(Exception $e){
+            return response()->json([
+                'message' => 'Sorry something went wrong',
+                'success' => false
+            ],500);
+        }
+    }
 }
