@@ -56,3 +56,5 @@ Route::delete('/student/{id}',[StudentController::class,'deleteStudent'])->middl
 
 //Courses Route Section
 Route::post('/course',[CourseController::class,'create'])->middleware(TokenVerificationMiddleware::class);
+Route::get('/course',[CourseController::class,'index'])->middleware(TokenVerificationMiddleware::class);
+Route::get('/course/{id}',[CourseController::class,'getCourseDetails'])->middleware(TokenVerificationMiddleware::class);
