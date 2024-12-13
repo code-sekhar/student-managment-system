@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BatchesController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController;
@@ -52,3 +53,6 @@ Route::get('/student/{id}',[StudentController::class,'studentDetails'])->middlew
 Route::put('/student/{id}/status',[StudentController::class,'updateStatusStudent'])->middleware(TokenVerificationMiddleware::class);
 Route::put('/student/{id}',[StudentController::class,'updateStudent'])->middleware(TokenVerificationMiddleware::class);
 Route::delete('/student/{id}',[StudentController::class,'deleteStudent'])->middleware(TokenVerificationMiddleware::class);
+
+//Courses Route Section
+Route::post('/course',[CourseController::class,'create'])->middleware(TokenVerificationMiddleware::class);
